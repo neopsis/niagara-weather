@@ -1,0 +1,5 @@
+<types>
+  <!--com.neopsis.envas.weather.openweathermap-->
+  <type class="com.neopsis.envas.weather.openweathermap.BNvOwmProvider" name="NvOwmProvider"/>
+  <type class="com.neopsis.envas.weather.openweathermap.BNvOwmReport"   name="NvOwmReport"/>
+</types>

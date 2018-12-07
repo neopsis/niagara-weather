@@ -1,0 +1,4 @@
+# Compiled class file
+*.class
+
+/envasWeather-rt/build/

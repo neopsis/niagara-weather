@@ -1,0 +1,52 @@
+
+description = "Envas Weather Module"
+
+niagaraModule {
+    preferredSymbol = "neo"
+    moduleName      = "envasWeather"
+    runtimeProfile  = "rt"
+}
+
+compileJava {
+    options.compilerArgs = ["-profile", "compact3"]
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+    }
+
+    test {
+        java {
+            srcDirs = ['src/test/java']
+        }
+    }
+}
+
+dependencies {
+    compile "Tridium:nre:4.0.0"
+    compile "Tridium:baja:4.0.0"
+    compile "Tridium:js-ux:4.0.0"
+    compile "Tridium:weather-rt:4.0.0"
+}
+
+jar {
+
+    from('src/main/resources') {
+        include '*.**'
+    }
+
+    doLast {
+        [gradle.ext.niagara_test_home + '/modules', gradle.ext.niagara_modules, '../lib'].each { dest ->
+            copy {
+                from(project.buildDir.toString() + '/libs')
+                include(baseName + '-' + version + '.jar')
+                rename(baseName + '-' + version + '.jar', baseName + '.jar')
+                into { file(dest) }
+            }
+        }
+    }
+}
+

@@ -1,0 +1,68 @@
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.zeroturnaround:gradle-jrebel-plugin:1.1.8"
+    }
+}
+
+allprojects { project ->
+    plugins.withId('java') {
+        project.apply plugin: 'org.zeroturnaround.gradle.jrebel'
+        def jarTask = project.tasks.findByName('jar')
+        if (jarTask) {
+            jarTask.dependsOn(generateRebel)
+        }
+    }
+}
+
+
+apply from: "${gradle.ext.niagara_home}/etc/gradle/idea.gradle"
+
+gradle.beforeProject { p ->
+    configure(p) {
+        apply from: "${rootDir}/vendor.gradle"
+        apply from: "${gradle.ext.niagara_home}/etc/gradle/niagara.gradle"
+    }
+}
+println 'Running Environment NIAGARA_HOME: ' + gradle.ext.niagara_home
+
+// avoid some JavaDoc error messages
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+tasks.addRule("""
+Pattern: [jar[Test]|clean|<any gradle task>]/[path]: Run a Gradle task against a set of modules rooted at path.
+""") { String taskName ->
+    def matcher = taskName =~ /(.*?)(Test)?\/(.*)/
+    if (matcher) {
+        def command = matcher.group(1)
+        def includeTestModules = matcher.group(2) == 'Test'
+        def path = file("${projectDir}/${matcher.group(3)}").toPath()
+
+        assert path.toFile().exists()
+        def targetProjects = subprojects.findAll { it.projectDir.toPath().startsWith(path) }
+
+        // default is build command and build is an alias for Gradle's jar task
+        if (command.isEmpty() || command == 'build') {
+            command = 'jar'
+        }
+
+        // Create task for subproject
+        task(taskName, dependsOn: targetProjects.tasks[command])
+        if (includeTestModules && command == 'jar') {
+            tasks[taskName].dependsOn targetProjects.moduleTestJar
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "${gradle.ext.gradle_version}"
+}

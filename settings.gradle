@@ -1,0 +1,56 @@
+import groovy.io.FileType
+import groovy.io.FileVisitResult
+
+
+pluginManagement {
+    apply from: file('environment.gradle')
+
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.namespace == 'com.tridium') {
+                useModule('com.tridium.tools:niagara-plugins:4.1.5')
+            }
+        }
+    }
+    repositories {
+        maven {
+            url "${gradle.ext.niagara_home}/etc/m2/repository"
+        }
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = "envasWeather"
+ext {
+    niagaraRoots = ["${rootProject.name}-rt"]
+    excludeDirs = ['.hg', 'build', 'out', 'src', 'srcTest', 'bin']
+}
+
+// niagaraRoots configuration
+def discoveredProjects = [:] as Map<String, File>
+niagaraRoots.collect({ file(it) }).findAll({ it.exists() }).each { File projectRoot ->
+    projectRoot.traverse(
+            type: FileType.DIRECTORIES,
+            preRoot: true,
+            preDir: { File projectDir ->
+                def projectName = projectDir.name
+                if (excludeDirs.contains(projectName)) {
+                    return FileVisitResult.SKIP_SUBTREE
+                }
+
+                File buildScript = new File(projectDir, "${projectName}.gradle")
+                if (buildScript.exists()) {
+                    discoveredProjects[projectName] = projectDir
+                    include projectName
+                    return FileVisitResult.SKIP_SUBTREE
+                }
+            }
+    )
+}
+
+rootProject.children.each { project ->
+    project.projectDir = discoveredProjects[project.name]
+    project.buildFileName = "${project.name}.gradle"
+    assert project.projectDir.isDirectory()
+    assert project.buildFile.isFile()
+}

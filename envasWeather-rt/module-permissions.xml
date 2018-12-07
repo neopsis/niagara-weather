@@ -1,0 +1,16 @@
+<permissions>
+    <niagara-permission-groups type="all">
+        <req-permission>
+            <name>LOGGING</name>
+            <purposeKey>Everybody needs logging.</purposeKey>
+        </req-permission>
+        <req-permission>
+            <name>NETWORK_COMMUNICATION</name>
+            <purposeKey>This module needs to communicate with a weather service.</purposeKey>
+            <parameters>
+                <parameter name="hosts" value="*" />
+                <parameter name="ports" value="*" />
+            </parameters>
+        </req-permission>
+    </niagara-permission-groups>
+</permissions>

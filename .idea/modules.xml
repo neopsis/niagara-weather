@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/envasWeather.iml" filepath="$PROJECT_DIR$/envasWeather.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/envasWeather-rt/envasWeather-rt.iml" filepath="$PROJECT_DIR$/.idea/modules/envasWeather-rt/envasWeather-rt.iml" group="envasWeather-rt" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/envasWeather-rt/envasWeather-rt_main.iml" filepath="$PROJECT_DIR$/.idea/modules/envasWeather-rt/envasWeather-rt_main.iml" group="envasWeather-rt" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/envasWeather-rt/envasWeather-rt_niagaraModuleTest.iml" filepath="$PROJECT_DIR$/.idea/modules/envasWeather-rt/envasWeather-rt_niagaraModuleTest.iml" group="envasWeather-rt" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/envasWeather-rt/envasWeather-rt_test.iml" filepath="$PROJECT_DIR$/.idea/modules/envasWeather-rt/envasWeather-rt_test.iml" group="envasWeather-rt" />
+    </modules>
+  </component>
+</project>
