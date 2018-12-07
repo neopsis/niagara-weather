@@ -11,8 +11,7 @@ by [Openweathermap](https://github.com/neopsis/niagara-weather.git).
   services select `Nv Owm Provider`. 
 * Add the location as `city`  or `city,country_code`, for example `London,GB`
 
-
-
+You can download the binary module from the */lib* directory.
 
 For developer: you can find the great documentation 
 [here](https://godoc.org/github.com/briandowns/openweathermap)
