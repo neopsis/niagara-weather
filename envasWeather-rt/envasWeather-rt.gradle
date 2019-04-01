@@ -5,6 +5,7 @@ niagaraModule {
     preferredSymbol = "neo"
     moduleName      = "envasWeather"
     runtimeProfile  = "rt"
+    certAlias       = "neopsis-code-sign"
 }
 
 compileJava {
