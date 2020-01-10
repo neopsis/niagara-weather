@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id=":envasWeather-rt:test" external.linked.project.path="$MODULE_DIR$/../../../envasWeather-rt" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="Neopsis" external.system.module.type="sourceSet" external.system.module.version="4.0.1" type="JAVA_MODULE" version="4">
+<module external.linked.project.id=":envasWeather-rt:test" external.linked.project.path="$MODULE_DIR$/../../../envasWeather-rt" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="Neopsis" external.system.module.type="sourceSet" external.system.module.version="4.0.2" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
-    <output-test url="file://$MODULE_DIR$/../../../envasWeather-rt/out/test/classes" />
+    <output-test url="file://$MODULE_DIR$/../../../envasWeather-rt/build/classes/java/test" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../envasWeather-rt/src/test">
       <sourceFolder url="file://$MODULE_DIR$/../../../envasWeather-rt/src/test/java" isTestSource="true" />
@@ -13,6 +13,7 @@
     <orderEntry type="library" name="Gradle: Tridium:nre:4.0.0" level="project" />
     <orderEntry type="library" name="Gradle: Tridium:baja:4.0.0" level="project" />
     <orderEntry type="library" name="Gradle: Tridium:js-ux:4.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: Tridium:net-rt:4.0.0" level="project" />
     <orderEntry type="library" name="Gradle: Tridium:weather-rt:4.0.0" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="envasWeather-rt_main" />

@@ -8,7 +8,8 @@ it as the direct replacement for the discontinued Weather Underground service.
 
 | Date      |   Change                                    |
 | ----------| --------------------------------------------|
-| 1.4.2019  | Module signed with Neopsis certificate     |
+| 9.1.2020  | Using HTTPConnection to pass NiagaraProxy   |
+| 1.4.2019  | Module signed with Neopsis certificate      |
 | 5.2.2019  | Initial Release                             |   
 
 

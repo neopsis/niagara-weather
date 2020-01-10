@@ -30,6 +30,7 @@ dependencies {
     compile "Tridium:nre:4.0.0"
     compile "Tridium:baja:4.0.0"
     compile "Tridium:js-ux:4.0.0"
+    compile "Tridium:net-rt:4.0.0"
     compile "Tridium:weather-rt:4.0.0"
 }
 

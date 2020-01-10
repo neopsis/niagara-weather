@@ -13,6 +13,7 @@ package com.neopsis.envas.weather.openweathermap;
 import com.neopsis.envas.weather.util.NvBaseReader;
 
 import com.tridium.json.JSONArray;
+import com.tridium.json.JSONException;
 import com.tridium.json.JSONObject;
 
 import javax.baja.status.BStatus;
@@ -50,8 +51,7 @@ public class NvOwmReader extends NvBaseReader {
     public void getForecast(ArrayList forecasts, String location, String appid) throws NvOwmException {
 
         BForecast fc   = null;
-        String    link = "http://api.openweathermap.org/data/2.5/forecast?q=" + location + "&mode=json&units=imperial&appid="
-                         + appid;
+        String    link = "/data/2.5/forecast?q=" + location + "&mode=json&units=imperial&appid=" + appid;
         String    json = read(link);
 
         try {
@@ -148,6 +148,8 @@ public class NvOwmReader extends NvBaseReader {
                 throw new NvOwmException("Open Weather Map returned no forecast data", BStatus.down);
             }
 
+        } catch (JSONException ex) {
+            throw new NvOwmException("Cannot parse response " + json + "[" + ex.getMessage() + "]", BStatus.fault);
         } catch (Exception ex) {
 
             if (fc != null) {
@@ -166,10 +168,9 @@ public class NvOwmReader extends NvBaseReader {
      * @param location  location string (e.g. "London,UK")
      * @param appid     application id
      */
-    public void getCurrentConditions(BCurrentConditions cond, BSunPosition sunPos, String location, String appid)
-            throws NvOwmException {
+    public void getCurrentConditions(BCurrentConditions cond, BSunPosition sunPos, String location, String appid) throws NvOwmException {
 
-        String link = "http://api.openweathermap.org/data/2.5/weather?q=" + location + "&mode=json&units=imperial&appid=" + appid;
+        String link = "/data/2.5/weather?q=" + location + "&mode=json&units=imperial&appid=" + appid;
 
         try {
 
