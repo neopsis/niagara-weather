@@ -28,4 +28,6 @@ To download the compiled module go to the
 For developers: you can find the great documentation 
 [here](https://godoc.org/github.com/briandowns/openweathermap)
 
+The code is licensed under Apache 2.0 license, see the [LICENSE file](https://github.com/neopsis/niagara-weather/blob/master/LICENSE)
+
 Enjoy
